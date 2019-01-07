@@ -1,4 +1,4 @@
-# Mobile Flashcards: A Flashcard app for studying on the go
+# Mobile Flashcards: A Flashcard App for Studying on the Go
 
 This is the third project for the course Udacity React Nanodegree. It's a mobile app using React Native and runs on IOS and Android devices.
 
@@ -67,10 +67,11 @@ yarn start
 Install the Expo App on your IOS or Android device.
 When you run 'yarn start', a new tab will open in your computer's browser. You will see a QR code on the bottom left. Open your phone's camera and view the QR code and you will see a popup on your phone 'Open in Expo' - click on that and your app will load on your phone. It takes a while so please be patient.
 
+For more details about using the Expo app, check out this link. https://expo.io/learn
 
 ## Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+This project was bootstrapped with [create-react-native-app](https://github.com/react-community/create-react-native-app).
 
 ## Built With
 
@@ -79,8 +80,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [React Native](https://github.com/facebook/react-native)
 * [Expo](https://expo.io/learn)
 * [Node/npm](https://github.com/nodejs/node)
-* [React Navigation] (https://github.com/react-navigation/react-navigation)
-* [CardFlip] (https://github.com/lhandel/react-native-card-flip)
+* [React Navigation](https://github.com/react-navigation/react-navigation)
+* [CardFlip](https://github.com/lhandel/react-native-card-flip)
 
 
 ## Author

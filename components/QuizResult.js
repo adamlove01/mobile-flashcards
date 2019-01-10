@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { setQuizDate } from '../utils/api';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 function QuizResult ({ deck, correct, navigation }) {
 
-  let now = new Date();
-  const date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
-  setQuizDate(date);
+  clearLocalNotification()
+  .then(setLocalNotification);
 
   const score = Math.round((correct / deck.cards.length) * 100);
   const imgName = Math.floor(score/10);
@@ -62,6 +61,7 @@ function QuizResult ({ deck, correct, navigation }) {
         <Text style={styles.caption}>
           {imgCaption}
         </Text>
+
         <TouchableOpacity
           style={styles.buttonStart}
           onPress={() => navigation.navigate('Deck', { deck: deck })}
@@ -69,9 +69,18 @@ function QuizResult ({ deck, correct, navigation }) {
           <Text style={{fontSize: 20}}>Back to Deck</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.btnBox}>
+        <TouchableOpacity
+          style={styles.addCard}
+          onPress={() => navigation.navigate('Quiz', { deck: deck, reload: 1 })}
+        >
+          <Text style={{fontSize: 20, textAlign: 'center'}}>Restart Quiz</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
+
 
 var styles = StyleSheet.create({
   card: {
@@ -103,12 +112,12 @@ var styles = StyleSheet.create({
   },
   score:{
     fontSize: 25,
-    marginTop: 30,
+    marginTop: 10,
   },
   caption:{
     fontSize: 25,
     marginTop: 10,
-    marginBottom: 100,
+    marginBottom: 40,
   },
   buttonStart:{
     position: 'absolute',
@@ -122,6 +131,23 @@ var styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     backgroundColor: '#ccffff',
+  },
+  btnBox: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addCard: {
+    width: '50%',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 30,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
   }
 });
 

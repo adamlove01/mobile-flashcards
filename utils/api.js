@@ -41,7 +41,6 @@ export async function getDecks () {
       decks = startingDecks;
     }
   });
-
   return decks;
 }
 
@@ -49,18 +48,3 @@ export function setDeck ( id, deck ) {
   return AsyncStorage.mergeItem('ALL_DECKS', JSON.stringify({[id]: deck}));
 }
 
-export function setQuizDate ( date ) {
-  return AsyncStorage.setItem('QUIZ_DATE', date);
-}
-
-export async function getQuizDate () {
-  let date = '';
-  await AsyncStorage.getItem('QUIZ_DATE', (err, result) => {
-    if (!err && result !== null) {
-      date = result;
-    } else {
-      date = '';
-    }
-  });
-  return date;
-}

@@ -6,8 +6,13 @@ import QuizResult from './QuizResult.js';
 class Quiz extends Component {
   state = {
     "currentCard": 0,
-    "correct": 0,
+    "correct": 0
   };
+
+  componentWillReceiveProps() {
+    console.log('received');
+      this.setState(() => ({currentCard: 0, correct: 0 }));
+  }
 
   recordAnswer(answer) {
     if (answer === 1) {
@@ -18,8 +23,8 @@ class Quiz extends Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const deck = navigation.state.params.deck;
+    const { navigation} = this.props;
+    const { deck } = navigation.state.params;
     const { currentCard, correct } = this.state;
     const total = deck.cards.length;
 
@@ -37,16 +42,16 @@ class Quiz extends Component {
       <View style={{flex: 1, margin: 10}}>
         <CardFlip style={{flex:1}} flipZoom={0} duration={300} ref={(card) => this.card = card} >
           <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} >
-            <Text style={{fontSize: 20}}>
-              Q: {deck.cards[currentCard].question}
+            <Text style={styles.text}>
+              {deck.cards[currentCard].question}
             </Text>
             <View style={styles.buttonStart}>
               <Text style={{fontSize: 20}}>Show Answer</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.card} onPress={() => this.card.flip()} >
-            <Text style={{fontSize: 20}}>
-              A: {deck.cards[currentCard].answer}
+            <Text style={styles.text}>
+              {deck.cards[currentCard].answer}
             </Text>
             <View style={styles.buttonAnswer}>
               <TouchableOpacity
@@ -90,6 +95,11 @@ var styles = StyleSheet.create({
     fontSize: 25,
     margin: 10,
   },
+  text: {
+    fontSize: 25,
+    marginTop: -20,
+    marginBottom: 20
+  },
   buttonStart:{
     position: 'absolute',
     bottom: 0,
@@ -115,7 +125,6 @@ var styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
   },
-
   correct:{
     alignItems: 'center',
     flexGrow: 1,

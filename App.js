@@ -1,17 +1,18 @@
-import React from 'react'
-import { View, Platform } from 'react-native'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import reducer from './reducers'
-import Decks from './components/Decks.js'
-import Deck from './components/Deck.js'
-import Quiz from './components/Quiz.js'
-import QuizResult from './components/QuizResult.js'
-import AddDeck from './components/AddDeck.js'
-import AddCard from './components/AddCard.js'
-import { purple, white } from './utils/colors.js'
+import React from 'react';
+import { View, Platform } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import reducer from './reducers';
+import Decks from './components/Decks.js';
+import Deck from './components/Deck.js';
+import Quiz from './components/Quiz.js';
+import QuizResult from './components/QuizResult.js';
+import AddDeck from './components/AddDeck.js';
+import AddCard from './components/AddCard.js';
+import { purple, white } from './utils/colors.js';
+import { setLocalNotification } from './utils/helpers';
 
 const Tabs = createBottomTabNavigator(
   {
@@ -47,7 +48,7 @@ const Tabs = createBottomTabNavigator(
       }
     }
   }
-)
+);
 
 const TabContainer = createAppContainer(Tabs);
 
@@ -94,12 +95,14 @@ const Main = createStackNavigator({
       },
     }),
   },
-})
+});
 
 const MainContainer = createAppContainer(Main);
 
 class App extends React.Component {
-
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
@@ -109,8 +112,8 @@ class App extends React.Component {
           </MainContainer>
         </View>
       </Provider>
-    )
+    );
   }
 }
 
-export default (App)
+export default (App);
